@@ -90,6 +90,26 @@ jsonvalx()
     echo ${temp}    
 }
 
+#
+# for the JSON.sh project wrapper equiv to jsonval()
+# https://github.com/dominictarr/JSON.sh
+#
+jsonval-sh()
+{
+   local temp
+   local search_for
+
+   search_for="\\[\"$2\"\]"
+
+   temp=$( echo "$1" | ./JSON.sh -b | grep "$search_for" )
+
+   temp=${temp##*$search_for}
+
+   temp="${temp%\"*}"
+   temp="${temp#*\"}"
+   echo ${temp}
+
+}
 
 #                                                                                                
 # rem_spaces $1  - replace space with underscore (_)                                                  
