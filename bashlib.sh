@@ -55,6 +55,24 @@ extract_key_value()
 }
 
 #
+# test if a variable is a number or not, note that "12345 xx" is not a number
+#
+# Return 1 for is a number
+#
+# call with:  isNumber $var
+#
+# return in $?
+#
+isNumber()
+{
+    if expr "$@" : '-*[0-9][0-9]*$'>/dev/null; then
+        return 1
+    else
+        return 0
+    fi
+}
+
+#
 #produces a unix timestamp in second from epoc, useful for timing operations
 #
 # usage : time=$(utime)
